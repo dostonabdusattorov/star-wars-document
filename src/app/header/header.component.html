@@ -1,9 +1,20 @@
 <mat-toolbar color="primary">
   <header class="header">
-    <div class="account">
-      <span>Payme Todo App</span>
-    </div>
-    <div class="sign-out-switch">
+    <a routerLink="/" class="logo">
+      <img src="./assets/img/star-wars-seeklogo.com.svg" alt="star wars logo" />
+    </a>
+    <nav class="nav">
+      <ul>
+        <li><a routerLink="/">Home</a></li>
+        <li><a routerLink="/movies">Movies</a></li>
+        <li><a routerLink="/d/people">People</a></li>
+        <li><a routerLink="/d/planets">Planets</a></li>
+        <li><a routerLink="/d/species">Species</a></li>
+        <li><a routerLink="/d/starships">Starships</a></li>
+        <li><a routerLink="/d/vehicles">Vehicles</a></li>
+      </ul>
+    </nav>
+    <div class="theme-toggler">
       <mat-slide-toggle
         [checked]="isThemeDark"
         (change)="onToggleMode($event)"
