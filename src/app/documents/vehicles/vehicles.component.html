@@ -1,14 +1,23 @@
 <section class="vehicles">
   <h2>Vehicles</h2>
-  <mat-form-field class="example-full-width">
-    <mat-label>Search Vehicles</mat-label>
-    <input
-      [disabled]="!getIsSuccess"
-      matInput
-      placeholder="Search..."
-      [(ngModel)]="searchText"
-    />
-  </mat-form-field>
+  <div class="vehicles-search-pagination">
+    <mat-form-field class="example-full-width">
+      <mat-label>Search Vehicles</mat-label>
+      <input
+        [disabled]="!getIsSuccess"
+        matInput
+        placeholder="Search..."
+        [(ngModel)]="searchText"
+      />
+    </mat-form-field>
+    <mat-paginator
+      (page)="paginationHandler($event)"
+      [length]="count"
+      pageSize="10"
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </div>
 
   <ul *ngIf="getIsSuccess" class="vehicles-list">
     <li *ngFor="let vehicle of getSearchedVehicles()">
@@ -24,7 +33,7 @@
       *ngIf="getIsFail"
       mat-flat-button
       color="warn"
-      (click)="dispatchGetVehicles()"
+      (click)="dispatchGetVehicles(1)"
     >
       Try Again!
     </button>

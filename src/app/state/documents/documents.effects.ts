@@ -30,8 +30,8 @@ export class DocumentsEffects {
   getPeople$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getPeople),
-      switchMap(() =>
-        from(this.documentsSer.getPeople()).pipe(
+      switchMap(({ pageIndex }) =>
+        from(this.documentsSer.getPeople(pageIndex)).pipe(
           map(({ count, results }) =>
             getPeopleSuccess({ count, people: results })
           ),
@@ -44,8 +44,8 @@ export class DocumentsEffects {
   getPlanets$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getPlanets),
-      switchMap(() =>
-        from(this.documentsSer.getPlanets()).pipe(
+      switchMap(({ pageIndex }) =>
+        from(this.documentsSer.getPlanets(pageIndex)).pipe(
           map(({ count, results }) =>
             getPlanetsSuccess({ count, planets: results })
           ),
@@ -58,8 +58,8 @@ export class DocumentsEffects {
   getSpecies$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getSpecies),
-      switchMap(() =>
-        from(this.documentsSer.getSpecies()).pipe(
+      switchMap(({ pageIndex }) =>
+        from(this.documentsSer.getSpecies(pageIndex)).pipe(
           map(({ count, results }) =>
             getSpeciesSuccess({ count, species: results })
           ),
@@ -72,8 +72,8 @@ export class DocumentsEffects {
   getStarships$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getStarships),
-      switchMap(() =>
-        from(this.documentsSer.getStarships()).pipe(
+      switchMap(({ pageIndex }) =>
+        from(this.documentsSer.getStarships(pageIndex)).pipe(
           map(({ count, results }) =>
             getStarshipsSuccess({ count, starships: results })
           ),
@@ -86,8 +86,8 @@ export class DocumentsEffects {
   getVehicles$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getVehicles),
-      switchMap(() =>
-        from(this.documentsSer.getVehicles()).pipe(
+      switchMap(({ pageIndex }) =>
+        from(this.documentsSer.getVehicles(pageIndex)).pipe(
           map(({ count, results }) =>
             getVehiclesSuccess({ count, vehicles: results })
           ),

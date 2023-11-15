@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { AppState, getPlanets, planetsSelector } from '../../state';
 import { Store } from '@ngrx/store';
 import { getSearchedItems } from '../../../utils';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-planets',
@@ -14,6 +15,7 @@ import { getSearchedItems } from '../../../utils';
 })
 export class PlanetsComponent {
   planets!: Planet[];
+  count!: number;
   status!: HttpStatus;
   error!: HttpErrorResponse | null;
 
@@ -25,18 +27,23 @@ export class PlanetsComponent {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.dispatchGetPlanets();
+    this.dispatchGetPlanets(1);
     this.planetsSubscription = this.planets$.subscribe(
-      ({ planets, status, error }) => {
+      ({ planets, count, status, error }) => {
         this.planets = planets;
+        this.count = count;
         this.status = status;
         this.error = error;
       }
     );
   }
 
-  dispatchGetPlanets() {
-    this.store.dispatch(getPlanets());
+  paginationHandler({ pageIndex }: PageEvent) {
+    this.dispatchGetPlanets(pageIndex + 1);
+  }
+
+  dispatchGetPlanets(pageIndex: number) {
+    this.store.dispatch(getPlanets({ pageIndex }));
   }
 
   get getIsLoading(): boolean {

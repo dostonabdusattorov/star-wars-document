@@ -17,6 +17,7 @@ import { PlanetCardComponent } from './planets/planet-card/planet-card.component
 import { SpeciesCardComponent } from './species/species-card/species-card.component';
 import { StarshipCardComponent } from './starships/starship-card/starship-card.component';
 import { VehicleCardComponent } from './vehicles/vehicle-card/vehicle-card.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { VehicleCardComponent } from './vehicles/vehicle-card/vehicle-card.compo
     FormsModule,
     MatProgressSpinnerModule,
     MatButtonModule,
+    MatPaginatorModule,
   ],
 })
 export class DocumentsModule {}

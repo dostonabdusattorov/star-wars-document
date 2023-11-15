@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { AppState, getSpecies, speciesSelector } from '../../state';
 import { Store } from '@ngrx/store';
 import { getSearchedItems } from '../../../utils';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-species',
@@ -14,6 +15,7 @@ import { getSearchedItems } from '../../../utils';
 })
 export class SpeciesComponent {
   species!: Species[];
+  count!: number;
   status!: HttpStatus;
   error!: HttpErrorResponse | null;
 
@@ -25,18 +27,23 @@ export class SpeciesComponent {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.dispatchGetSpecies();
+    this.dispatchGetSpecies(1);
     this.speciesSubscription = this.species$.subscribe(
-      ({ species, status, error }) => {
+      ({ species, count, status, error }) => {
         this.species = species;
+        this.count = count;
         this.status = status;
         this.error = error;
       }
     );
   }
 
-  dispatchGetSpecies() {
-    this.store.dispatch(getSpecies());
+  paginationHandler({ pageIndex }: PageEvent) {
+    this.dispatchGetSpecies(pageIndex + 1);
+  }
+
+  dispatchGetSpecies(pageIndex: number) {
+    this.store.dispatch(getSpecies({ pageIndex }));
   }
 
   get getIsLoading(): boolean {

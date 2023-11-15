@@ -1,14 +1,23 @@
 <section class="species">
   <h2>Species</h2>
-  <mat-form-field class="example-full-width">
-    <mat-label>Search Species</mat-label>
-    <input
-      [disabled]="!getIsSuccess"
-      matInput
-      placeholder="Search..."
-      [(ngModel)]="searchText"
-    />
-  </mat-form-field>
+  <div class="species-search-pagination">
+    <mat-form-field class="example-full-width">
+      <mat-label>Search Species</mat-label>
+      <input
+        [disabled]="!getIsSuccess"
+        matInput
+        placeholder="Search..."
+        [(ngModel)]="searchText"
+      />
+    </mat-form-field>
+    <mat-paginator
+      (page)="paginationHandler($event)"
+      [length]="count"
+      pageSize="10"
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </div>
 
   <ul *ngIf="getIsSuccess" class="species-list">
     <li *ngFor="let species of getSearchedSpecies()">
@@ -24,7 +33,7 @@
       *ngIf="getIsFail"
       mat-flat-button
       color="warn"
-      (click)="dispatchGetSpecies()"
+      (click)="dispatchGetSpecies(1)"
     >
       Try Again!
     </button>

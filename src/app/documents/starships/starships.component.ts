@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { AppState, getStarships, starshipsSelector } from '../../state';
 import { Store } from '@ngrx/store';
 import { getSearchedItems } from '../../../utils';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-starships',
@@ -14,6 +15,7 @@ import { getSearchedItems } from '../../../utils';
 })
 export class StarshipsComponent {
   starships!: Starship[];
+  count!: number;
   status!: HttpStatus;
   error!: HttpErrorResponse | null;
 
@@ -25,18 +27,23 @@ export class StarshipsComponent {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.dispatchGetStarships();
+    this.dispatchGetStarships(1);
     this.starshipsSubscription = this.starships$.subscribe(
-      ({ starships, status, error }) => {
+      ({ starships, count, status, error }) => {
         this.starships = starships;
+        this.count = count;
         this.status = status;
         this.error = error;
       }
     );
   }
 
-  dispatchGetStarships() {
-    this.store.dispatch(getStarships());
+  paginationHandler({ pageIndex }: PageEvent) {
+    this.dispatchGetStarships(pageIndex + 1);
+  }
+
+  dispatchGetStarships(pageIndex: number) {
+    this.store.dispatch(getStarships({ pageIndex }));
   }
 
   get getIsLoading(): boolean {

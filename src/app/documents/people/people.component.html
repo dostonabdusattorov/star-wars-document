@@ -1,14 +1,24 @@
 <section class="people">
   <h2>People</h2>
-  <mat-form-field class="example-full-width">
-    <mat-label>Search People</mat-label>
-    <input
-      [disabled]="!getIsSuccess"
-      matInput
-      placeholder="Search..."
-      [(ngModel)]="searchText"
-    />
-  </mat-form-field>
+  <div class="people-search-pagination">
+    <mat-form-field>
+      <mat-label>Search People</mat-label>
+
+      <input
+        [disabled]="!getIsSuccess"
+        matInput
+        placeholder="Search..."
+        [(ngModel)]="searchText"
+      />
+    </mat-form-field>
+    <mat-paginator
+      (page)="paginationHandler($event)"
+      [length]="count"
+      pageSize="10"
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </div>
 
   <ul *ngIf="getIsSuccess" class="people-list">
     <li *ngFor="let person of getSearchedPeople()">
@@ -24,7 +34,7 @@
       *ngIf="getIsFail"
       mat-flat-button
       color="warn"
-      (click)="dispatchGetPeople()"
+      (click)="dispatchGetPeople(1)"
     >
       Try Again!
     </button>

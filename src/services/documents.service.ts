@@ -17,23 +17,33 @@ import {
 export class DocumentsService {
   constructor(private http: HttpClient) {}
 
-  getPeople(): Observable<HttpResponseType<Person>> {
-    return this.http.get<HttpResponseType<Person>>(`${basicUrl}/people`);
+  getPeople(pageIndex: number): Observable<HttpResponseType<Person>> {
+    return this.http.get<HttpResponseType<Person>>(
+      `${basicUrl}/people?page=${pageIndex}`
+    );
   }
 
-  getPlanets(): Observable<HttpResponseType<Planet>> {
-    return this.http.get<HttpResponseType<Planet>>(`${basicUrl}/planets`);
+  getPlanets(pageIndex: number): Observable<HttpResponseType<Planet>> {
+    return this.http.get<HttpResponseType<Planet>>(
+      `${basicUrl}/planets?page=${pageIndex}`
+    );
   }
 
-  getSpecies(): Observable<HttpResponseType<Species>> {
-    return this.http.get<HttpResponseType<Species>>(`${basicUrl}/species`);
+  getSpecies(pageIndex: number): Observable<HttpResponseType<Species>> {
+    return this.http.get<HttpResponseType<Species>>(
+      `${basicUrl}/species?page=${pageIndex}`
+    );
   }
 
-  getStarships(): Observable<HttpResponseType<Starship>> {
-    return this.http.get<HttpResponseType<Starship>>(`${basicUrl}/starships`);
+  getStarships(pageIndex: number): Observable<HttpResponseType<Starship>> {
+    return this.http.get<HttpResponseType<Starship>>(
+      `${basicUrl}/starships?page=${pageIndex}`
+    );
   }
 
-  getVehicles(): Observable<HttpResponseType<Vehicle>> {
-    return this.http.get<HttpResponseType<Vehicle>>(`${basicUrl}/vehicles`);
+  getVehicles(pageIndex: number): Observable<HttpResponseType<Vehicle>> {
+    return this.http.get<HttpResponseType<Vehicle>>(
+      `${basicUrl}/vehicles?page=${pageIndex}`
+    );
   }
 }

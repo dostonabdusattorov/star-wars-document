@@ -13,6 +13,17 @@
     margin-top: 3rem;
   }
 
+  &-search-pagination {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5rem;
+    width: 100%;
+    mat-paginator {
+      font-size: 1.6rem;
+    }
+  }
+
   &-list {
     list-style: none;
     display: grid;

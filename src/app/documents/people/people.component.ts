@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { AppState, getPeople, peopleSelector } from '../../state';
 import { Store } from '@ngrx/store';
 import { getSearchedItems } from '../../../utils';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-people',
@@ -13,6 +14,7 @@ import { getSearchedItems } from '../../../utils';
   styleUrls: ['./people.component.scss'],
 })
 export class PeopleComponent {
+  count!: number;
   people!: Person[];
   status!: HttpStatus;
   error!: HttpErrorResponse | null;
@@ -25,9 +27,10 @@ export class PeopleComponent {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.dispatchGetPeople();
+    this.dispatchGetPeople(1);
     this.peopleSubscription = this.people$.subscribe(
-      ({ people, status, error }) => {
+      ({ count, people, status, error }) => {
+        this.count = count;
         this.people = people;
         this.status = status;
         this.error = error;
@@ -35,8 +38,12 @@ export class PeopleComponent {
     );
   }
 
-  dispatchGetPeople() {
-    this.store.dispatch(getPeople());
+  paginationHandler({ pageIndex }: PageEvent) {
+    this.dispatchGetPeople(pageIndex + 1);
+  }
+
+  dispatchGetPeople(pageIndex: number) {
+    this.store.dispatch(getPeople({ pageIndex }));
   }
 
   get getIsLoading(): boolean {

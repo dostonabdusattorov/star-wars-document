@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { AppState, getVehicles, vehiclesSelector } from '../../state';
 import { Store } from '@ngrx/store';
 import { getSearchedItems } from '../../../utils';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-vehicles',
@@ -14,6 +15,7 @@ import { getSearchedItems } from '../../../utils';
 })
 export class VehiclesComponent {
   vehicles!: Vehicle[];
+  count!: number;
   status!: HttpStatus;
   error!: HttpErrorResponse | null;
 
@@ -25,18 +27,23 @@ export class VehiclesComponent {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.dispatchGetVehicles();
+    this.dispatchGetVehicles(1);
     this.vehiclesSubscription = this.vehicles$.subscribe(
-      ({ vehicles, status, error }) => {
+      ({ vehicles, count, status, error }) => {
         this.vehicles = vehicles;
+        this.count = count;
         this.status = status;
         this.error = error;
       }
     );
   }
 
-  dispatchGetVehicles() {
-    this.store.dispatch(getVehicles());
+  paginationHandler({ pageIndex }: PageEvent) {
+    this.dispatchGetVehicles(pageIndex + 1);
+  }
+
+  dispatchGetVehicles(pageIndex: number) {
+    this.store.dispatch(getVehicles({ pageIndex }));
   }
 
   get getIsLoading(): boolean {

@@ -1,14 +1,23 @@
 <section class="planets">
   <h2>Planets</h2>
-  <mat-form-field class="example-full-width">
-    <mat-label>Search Planets</mat-label>
-    <input
-      [disabled]="!getIsSuccess"
-      matInput
-      placeholder="Search..."
-      [(ngModel)]="searchText"
-    />
-  </mat-form-field>
+  <div class="planets-search-pagination">
+    <mat-form-field class="example-full-width">
+      <mat-label>Search Planets</mat-label>
+      <input
+        [disabled]="!getIsSuccess"
+        matInput
+        placeholder="Search..."
+        [(ngModel)]="searchText"
+      />
+    </mat-form-field>
+    <mat-paginator
+      (page)="paginationHandler($event)"
+      [length]="count"
+      pageSize="10"
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </div>
 
   <ul *ngIf="getIsSuccess" class="planets-list">
     <li *ngFor="let planet of getSearchedPlanets()">
@@ -24,7 +33,7 @@
       *ngIf="getIsFail"
       mat-flat-button
       color="warn"
-      (click)="dispatchGetPlanets()"
+      (click)="dispatchGetPlanets(1)"
     >
       Try Again!
     </button>
