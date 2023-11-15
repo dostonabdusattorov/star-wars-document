@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+  <header class="header">
+    <div class="account">
+      <span>Payme Todo App</span>
+    </div>
+    <div class="sign-out-switch">
+      <mat-slide-toggle
+        [checked]="isThemeDark"
+        (change)="onToggleMode($event)"
+      ></mat-slide-toggle>
+      <span>Dark Mode</span>
+    </div>
+  </header>
+</mat-toolbar>
