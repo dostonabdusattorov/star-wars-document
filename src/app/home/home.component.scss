@@ -13,3 +13,19 @@
     color: red;
   }
 }
+
+.welcome {
+  height: 91.6vh;
+  h2 {
+    text-align: center;
+    font-size: 7rem;
+    padding: 5rem;
+    letter-spacing: 2rem;
+  }
+  p {
+    font-size: 2rem;
+    padding: 2rem 8rem;
+    text-align: center;
+    line-height: 5rem;
+  }
+}

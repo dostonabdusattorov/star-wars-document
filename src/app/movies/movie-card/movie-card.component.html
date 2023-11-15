@@ -1,0 +1,13 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title class="title">{{ movie.title }}</mat-card-title>
+    <mat-card-subtitle class="director">{{ movie.director }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p class="producer">{{ movie.producer }}</p>
+    <p class="opening">{{ movie.opening_crawl }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <span mat-button>{{ getProperDate }}</span>
+  </mat-card-actions>
+</mat-card>

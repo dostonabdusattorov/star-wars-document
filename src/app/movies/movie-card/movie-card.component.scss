@@ -1,0 +1,16 @@
+.example-card {
+  max-width: 60rem;
+  font-size: 1.6rem;
+  .title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  .director {
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+  }
+  .producer,
+  .opening {
+    margin-bottom: 1.2rem;
+  }
+}
