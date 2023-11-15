@@ -11,3 +11,4 @@ export * from './starship.interface';
 export * from './starships-state.interface';
 export * from './vehicle.interface';
 export * from './vehicles-state.interface';
+export * from './response.interface';

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { documentsReducer, moviesReducer } from './state';
 import { EffectsModule } from '@ngrx/effects';
+import { HttpClientModule } from '@angular/common/http';
 
 const reducer = { documents: documentsReducer, movies: moviesReducer };
 
@@ -14,6 +15,7 @@ const reducer = { documents: documentsReducer, movies: moviesReducer };
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     StoreModule.forRoot(reducer),
     EffectsModule.forRoot([]),
   ],
