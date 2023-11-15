@@ -5,6 +5,7 @@ import { PlanetsComponent } from './planets/planets.component';
 import { SpeciesComponent } from './species/species.component';
 import { StarshipsComponent } from './starships/starships.component';
 import { VehiclesComponent } from './vehicles/vehicles.component';
+import { DocumentsRoutingModule } from './documents-routing.module';
 
 @NgModule({
   declarations: [
@@ -12,8 +13,8 @@ import { VehiclesComponent } from './vehicles/vehicles.component';
     PlanetsComponent,
     SpeciesComponent,
     StarshipsComponent,
-    VehiclesComponent
+    VehiclesComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, DocumentsRoutingModule],
 })
 export class DocumentsModule {}
