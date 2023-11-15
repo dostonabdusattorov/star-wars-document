@@ -1,1 +1,32 @@
-<p>starships works!</p>
+<section class="starships">
+  <h2>Starships</h2>
+  <mat-form-field class="example-full-width">
+    <mat-label>Search Starships</mat-label>
+    <input
+      [disabled]="!getIsSuccess"
+      matInput
+      placeholder="Search..."
+      [(ngModel)]="searchText"
+    />
+  </mat-form-field>
+
+  <ul *ngIf="getIsSuccess" class="starships-list">
+    <li *ngFor="let starship of getSearchedStarships()">
+      <app-starship-card [starship]="starship"></app-starship-card>
+    </li>
+  </ul>
+
+  <div class="loader_error">
+    <mat-spinner *ngIf="getIsLoading"></mat-spinner>
+
+    <span *ngIf="getIsFail">{{ error?.message }}</span>
+    <button
+      *ngIf="getIsFail"
+      mat-flat-button
+      color="warn"
+      (click)="dispatchGetStarships()"
+    >
+      Try Again!
+    </button>
+  </div>
+</section>

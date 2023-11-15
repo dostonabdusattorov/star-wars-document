@@ -1,0 +1,19 @@
+<mat-card class="species-card">
+  <mat-card-header>
+    <mat-card-title class="title">{{ species.name }}</mat-card-title>
+    <mat-card-subtitle class="director">{{
+      species.classification
+    }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p class="attrs">Designation: {{ species.designation }}</p>
+    <p class="attrs">Average height: {{ species.average_height }}</p>
+    <p class="attrs">Skin colors: {{ species.skin_colors }}</p>
+    <p class="attrs">Hair colors: {{ species.hair_colors }}</p>
+    <p class="attrs">Eye colors: {{ species.eye_colors }}</p>
+    <p class="attrs">Language: {{ species.language }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <span mat-button>AL: {{ species.average_lifespan }}</span>
+  </mat-card-actions>
+</mat-card>

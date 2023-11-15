@@ -1,1 +1,32 @@
-<p>vehicles works!</p>
+<section class="vehicles">
+  <h2>Vehicles</h2>
+  <mat-form-field class="example-full-width">
+    <mat-label>Search Vehicles</mat-label>
+    <input
+      [disabled]="!getIsSuccess"
+      matInput
+      placeholder="Search..."
+      [(ngModel)]="searchText"
+    />
+  </mat-form-field>
+
+  <ul *ngIf="getIsSuccess" class="vehicles-list">
+    <li *ngFor="let vehicle of getSearchedVehicles()">
+      <app-vehicle-card [vehicle]="vehicle"></app-vehicle-card>
+    </li>
+  </ul>
+
+  <div class="loader_error">
+    <mat-spinner *ngIf="getIsLoading"></mat-spinner>
+
+    <span *ngIf="getIsFail">{{ error?.message }}</span>
+    <button
+      *ngIf="getIsFail"
+      mat-flat-button
+      color="warn"
+      (click)="dispatchGetVehicles()"
+    >
+      Try Again!
+    </button>
+  </div>
+</section>

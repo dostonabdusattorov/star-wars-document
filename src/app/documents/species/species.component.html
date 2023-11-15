@@ -1,1 +1,32 @@
-<p>species works!</p>
+<section class="species">
+  <h2>Species</h2>
+  <mat-form-field class="example-full-width">
+    <mat-label>Search Species</mat-label>
+    <input
+      [disabled]="!getIsSuccess"
+      matInput
+      placeholder="Search..."
+      [(ngModel)]="searchText"
+    />
+  </mat-form-field>
+
+  <ul *ngIf="getIsSuccess" class="species-list">
+    <li *ngFor="let species of getSearchedSpecies()">
+      <app-species-card [species]="species"></app-species-card>
+    </li>
+  </ul>
+
+  <div class="loader_error">
+    <mat-spinner *ngIf="getIsLoading"></mat-spinner>
+
+    <span *ngIf="getIsFail">{{ error?.message }}</span>
+    <button
+      *ngIf="getIsFail"
+      mat-flat-button
+      color="warn"
+      (click)="dispatchGetSpecies()"
+    >
+      Try Again!
+    </button>
+  </div>
+</section>

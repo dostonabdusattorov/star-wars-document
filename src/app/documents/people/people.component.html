@@ -1,1 +1,32 @@
-<p>people works!</p>
+<section class="people">
+  <h2>People</h2>
+  <mat-form-field class="example-full-width">
+    <mat-label>Search People</mat-label>
+    <input
+      [disabled]="!getIsSuccess"
+      matInput
+      placeholder="Search..."
+      [(ngModel)]="searchText"
+    />
+  </mat-form-field>
+
+  <ul *ngIf="getIsSuccess" class="people-list">
+    <li *ngFor="let person of getSearchedPeople()">
+      <app-person-card [person]="person"></app-person-card>
+    </li>
+  </ul>
+
+  <div class="loader_error">
+    <mat-spinner *ngIf="getIsLoading"></mat-spinner>
+
+    <span *ngIf="getIsFail">{{ error?.message }}</span>
+    <button
+      *ngIf="getIsFail"
+      mat-flat-button
+      color="warn"
+      (click)="dispatchGetPeople()"
+    >
+      Try Again!
+    </button>
+  </div>
+</section>

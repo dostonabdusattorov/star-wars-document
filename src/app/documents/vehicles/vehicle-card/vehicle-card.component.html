@@ -1,0 +1,19 @@
+<mat-card class="vehicle-card">
+  <mat-card-header>
+    <mat-card-title class="title">{{ vehicle.name }}</mat-card-title>
+    <mat-card-subtitle class="director">{{ vehicle.model }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p class="attrs">Manufacturer: {{ vehicle.manufacturer }}</p>
+    <p class="attrs">Length: {{ vehicle.length }}</p>
+    <p class="attrs">
+      Max atmosphering speed: {{ vehicle.max_atmosphering_speed }}
+    </p>
+    <p class="attrs">Crew: {{ vehicle.crew }}</p>
+    <p class="attrs">Passengers: {{ vehicle.passengers }}</p>
+    <p class="attrs">Cargo capacity: {{ vehicle.cargo_capacity }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <span mat-button>VC: {{ vehicle.vehicle_class }}</span>
+  </mat-card-actions>
+</mat-card>
