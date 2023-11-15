@@ -4,7 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
-import { documentsReducer, moviesReducer } from './state';
+import {
+  documentsReducer,
+  moviesReducer,
+  MoviesEffects,
+  DocumentsEffects,
+} from './state';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -17,7 +22,7 @@ const reducer = { documents: documentsReducer, movies: moviesReducer };
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot(reducer),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([MoviesEffects, DocumentsEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],

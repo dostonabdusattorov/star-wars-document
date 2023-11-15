@@ -4,6 +4,7 @@ import { HttpStatus } from '../constants';
 
 export interface SpeciesState {
   species: Species[];
+  count: number;
   error: HttpErrorResponse | null;
   status: HttpStatus;
 }

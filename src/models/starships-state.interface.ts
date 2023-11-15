@@ -4,6 +4,7 @@ import { HttpStatus } from '../constants';
 
 export interface StarshipsState {
   starships: Starship[];
+  count: number;
   error: HttpErrorResponse | null;
   status: HttpStatus;
 }

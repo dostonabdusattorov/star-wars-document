@@ -5,6 +5,7 @@ import { getMovies, getMoviesFail, getMoviesSuccess } from './movies.actions';
 
 export const initialState: MoviesState = {
   movies: [],
+  count: 0,
   error: null,
   status: HttpStatus.PENDING,
 };
@@ -12,9 +13,10 @@ export const initialState: MoviesState = {
 export const moviesReducer = createReducer(
   initialState,
   on(getMovies, (state) => ({ ...state, status: HttpStatus.LOADING })),
-  on(getMoviesSuccess, (state, { movies }) => ({
+  on(getMoviesSuccess, (state, { movies, count }) => ({
     ...state,
     movies,
+    count,
     status: HttpStatus.SUCCESS,
   })),
   on(getMoviesFail, (state, { error }) => ({

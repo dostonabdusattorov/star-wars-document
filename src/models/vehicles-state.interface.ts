@@ -4,6 +4,7 @@ import { HttpStatus } from '../constants';
 
 export interface VehiclesState {
   vehicles: Vehicle[];
+  count: number;
   error: HttpErrorResponse | null;
   status: HttpStatus;
 }

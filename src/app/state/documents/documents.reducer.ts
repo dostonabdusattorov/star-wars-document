@@ -22,26 +22,31 @@ import {
 const initialState: DocumentsState = {
   people: {
     people: [],
+    count: 0,
     error: null,
     status: HttpStatus.PENDING,
   },
   planets: {
     planets: [],
+    count: 0,
     error: null,
     status: HttpStatus.PENDING,
   },
   species: {
     species: [],
+    count: 0,
     error: null,
     status: HttpStatus.PENDING,
   },
   starships: {
     starships: [],
+    count: 0,
     error: null,
     status: HttpStatus.PENDING,
   },
   vehicles: {
     vehicles: [],
+    count: 0,
     error: null,
     status: HttpStatus.PENDING,
   },
@@ -53,9 +58,9 @@ export const documentsReducer = createReducer(
     ...state,
     people: { ...state.people, status: HttpStatus.LOADING },
   })),
-  on(getPeopleSuccess, (state, { people }) => ({
+  on(getPeopleSuccess, (state, { people, count }) => ({
     ...state,
-    people: { ...state.people, people, status: HttpStatus.SUCCESS },
+    people: { ...state.people, people, count, status: HttpStatus.SUCCESS },
   })),
   on(getPeopleFail, (state, { error }) => ({
     ...state,
@@ -66,9 +71,9 @@ export const documentsReducer = createReducer(
     ...state,
     planets: { ...state.planets, status: HttpStatus.LOADING },
   })),
-  on(getPlanetsSuccess, (state, { planets }) => ({
+  on(getPlanetsSuccess, (state, { planets, count }) => ({
     ...state,
-    planets: { ...state.planets, planets, status: HttpStatus.SUCCESS },
+    planets: { ...state.planets, planets, count, status: HttpStatus.SUCCESS },
   })),
   on(getPlanetsFail, (state, { error }) => ({
     ...state,
@@ -79,9 +84,9 @@ export const documentsReducer = createReducer(
     ...state,
     species: { ...state.species, status: HttpStatus.LOADING },
   })),
-  on(getSpeciesSuccess, (state, { species }) => ({
+  on(getSpeciesSuccess, (state, { species, count }) => ({
     ...state,
-    species: { ...state.species, species, status: HttpStatus.SUCCESS },
+    species: { ...state.species, species, count, status: HttpStatus.SUCCESS },
   })),
   on(getSpeciesFail, (state, { error }) => ({
     ...state,
@@ -92,9 +97,14 @@ export const documentsReducer = createReducer(
     ...state,
     starships: { ...state.starships, status: HttpStatus.LOADING },
   })),
-  on(getStarshipsSuccess, (state, { starships }) => ({
+  on(getStarshipsSuccess, (state, { starships, count }) => ({
     ...state,
-    starships: { ...state.starships, starships, status: HttpStatus.SUCCESS },
+    starships: {
+      ...state.starships,
+      starships,
+      count,
+      status: HttpStatus.SUCCESS,
+    },
   })),
   on(getStarshipsFail, (state, { error }) => ({
     ...state,
@@ -105,9 +115,14 @@ export const documentsReducer = createReducer(
     ...state,
     vehicles: { ...state.vehicles, status: HttpStatus.LOADING },
   })),
-  on(getVehiclesSuccess, (state, { vehicles }) => ({
+  on(getVehiclesSuccess, (state, { vehicles, count }) => ({
     ...state,
-    vehicles: { ...state.vehicles, vehicles, status: HttpStatus.SUCCESS },
+    vehicles: {
+      ...state.vehicles,
+      vehicles,
+      count,
+      status: HttpStatus.SUCCESS,
+    },
   })),
   on(getVehiclesFail, (state, { error }) => ({
     ...state,

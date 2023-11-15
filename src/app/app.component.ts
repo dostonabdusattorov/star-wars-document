@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DocumentsService, MoviesService } from '../services';
+import { Store } from '@ngrx/store';
+import { AppState, getMovies, moviesSelector } from './state';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +8,12 @@ import { DocumentsService, MoviesService } from '../services';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'star-wars-document';
+  private movies$ = this.store.select(moviesSelector);
 
-  constructor(private documentsSer: DocumentsService) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.documentsSer
-      .getVehicles()
-      .subscribe((response) => console.log(response));
+    this.store.dispatch(getMovies());
+    this.movies$.subscribe((res) => console.log(res));
   }
 }

@@ -5,7 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export const getPeople = createAction('[Documents] Get People');
 export const getPeopleSuccess = createAction(
   '[Documents] Get People Success',
-  props<{ people: Person[] }>()
+  props<{ count: number; people: Person[] }>()
 );
 export const getPeopleFail = createAction(
   '[Documents] Get People Fail',
@@ -15,7 +15,7 @@ export const getPeopleFail = createAction(
 export const getPlanets = createAction('[Documents] Get Planets');
 export const getPlanetsSuccess = createAction(
   '[Documents] Get Planets Success',
-  props<{ planets: Planet[] }>()
+  props<{ count: number; planets: Planet[] }>()
 );
 export const getPlanetsFail = createAction(
   '[Documents] Get Planets Fail',
@@ -25,7 +25,7 @@ export const getPlanetsFail = createAction(
 export const getSpecies = createAction('[Documents] Get Species');
 export const getSpeciesSuccess = createAction(
   '[Documents] Get Species Success',
-  props<{ species: Species[] }>()
+  props<{ count: number; species: Species[] }>()
 );
 export const getSpeciesFail = createAction(
   '[Documents] Get Species Fail',
@@ -35,7 +35,7 @@ export const getSpeciesFail = createAction(
 export const getStarships = createAction('[Documents] Get Starships');
 export const getStarshipsSuccess = createAction(
   '[Documents] Get Starships Success',
-  props<{ starships: Starship[] }>()
+  props<{ count: number; starships: Starship[] }>()
 );
 export const getStarshipsFail = createAction(
   '[Documents] Get Starships Fail',
@@ -45,7 +45,7 @@ export const getStarshipsFail = createAction(
 export const getVehicles = createAction('[Documents] Get Vehicles');
 export const getVehiclesSuccess = createAction(
   '[Documents] Get Vehicles Success',
-  props<{ vehicles: Vehicle[] }>()
+  props<{ count: number; vehicles: Vehicle[] }>()
 );
 export const getVehiclesFail = createAction(
   '[Documents] Get Vehicles Fail',
